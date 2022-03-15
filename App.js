@@ -15,6 +15,7 @@ import {
   useColorScheme,
   View,
   PermissionsAndroid,
+  NativeModules,
 } from 'react-native';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
@@ -39,9 +40,14 @@ const App: () => Node = () => {
       return null;
     }
   };
+  const ToolModule =  NativeModules.ToolModule : null;
+  function get() {
+    return ToolModule.getLocation();
+  }
 
   useEffect(() => {
     requestPermissions();
+    get();
   }, []);
 
   return (
